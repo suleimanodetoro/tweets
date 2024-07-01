@@ -20,6 +20,8 @@ class IdeaController extends Controller
             'likes' => 0,
         ]);
 
-        return redirect()->route('dashboard');
+        //use 'with' to pass a one time session that
+
+        return redirect()->route('dashboard')->with('success','Idea posted successfully');
     }
 }
