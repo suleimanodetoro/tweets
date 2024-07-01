@@ -12,9 +12,7 @@ Route::get('terms', function () {
     return view('terms');
 });
 
-Route::get('/ideas', [IdeaController::class,"index"])->name('idea.index'); // Changed this to 'index' method
-Route::post('/ideas', [IdeaController::class,"store"])->name('idea.create');
-
-// Route::get('/layout', function () {
-//     return view('layout.layout');
-// });
+// Idea routes
+Route::get('/ideas', [IdeaController::class, "index"])->name('ideas.index');
+Route::post('/ideas', [IdeaController::class, "store"])->name('ideas.create');
+Route::delete('/ideas/{id}', [IdeaController::class, "destroy"])->name('ideas.destroy');

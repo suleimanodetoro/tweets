@@ -7,25 +7,31 @@ use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
-
     public function index()
     {
-        return view('ideas.index');
+        $ideas = Idea::all();
+        return view('ideas.index', compact('ideas'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'idea' => 'required|min:5|max:245',
-
         ]);
-        $idea = Idea::create([
-            'content' => request()->get('idea', ''),
+
+        Idea::create([
+            'content' => $request->idea,
             'likes' => 0,
         ]);
 
-        //use 'with' to pass a one time session that
+        return redirect()->route('dashboard')->with('success', 'Idea posted successfully');
+    }
 
-        return redirect()->route('dashboard')->with('success','Idea posted successfully');
+    public function destroy($id)
+    {
+        $idea = Idea::findOrFail($id);
+        $idea->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully');
     }
 }
