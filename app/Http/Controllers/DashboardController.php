@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Idea;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(){
-        // some logic
-        $users = [
-            [
-                'name' => "Arnold",
-                'age' => 30,
-            ],
-            [
-                'name' => "Suleiman",
-                'age' => 32
-            ]
-
-        ];
-        return view('dashboard', [
-            'userList' => $users
+        $idea = new Idea([
+            'content'=>'another one',
+            'likes'=>1,
+        ]);
+        $idea->save();
+    //{
+    //     // manual first tweet to confirm database set up and integration
+    //     $idea = new Idea();
+    //     $idea->content = "Hello World";
+    //     $idea->likes = $idea->likes + 1; // Incrementing an existing value
+    //     $idea->save();
+        return view('dashboard',[
+            'ideas' => Idea::all()
         ]);
     }
 
