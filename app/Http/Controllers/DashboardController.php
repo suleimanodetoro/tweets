@@ -20,7 +20,7 @@ class DashboardController extends Controller
     //     $idea->likes = $idea->likes + 1; // Incrementing an existing value
     //     $idea->save();
         return view('dashboard',[
-            'ideas' => Idea::all()
+            'ideas' => Idea::orderBy('created_at','DESC')->get()
         ]);
     }
 
