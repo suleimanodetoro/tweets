@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        $idea = new Idea([
-            'content'=>'another one',
-            'likes'=>1,
-        ]);
-        $idea->save();
     //{
     //     // manual first tweet to confirm database set up and integration
     //     $idea = new Idea();
