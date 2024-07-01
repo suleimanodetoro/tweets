@@ -13,6 +13,7 @@
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm">X</button>
                 </form>
+                <a href="{{route('ideas.show', $idea->id)}}">View</a>
             </div>
         </div>
     </div>
