@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        
-    //{
-    //     // manual first tweet to confirm database set up and integration
-    //     $idea = new Idea();
-    //     $idea->content = "Hello World";
-    //     $idea->likes = $idea->likes + 1; // Incrementing an existing value
-    //     $idea->save();
-        return view('dashboard',[
-            'ideas' => Idea::orderBy('created_at','DESC')->paginate(3)
+    public function index()
+    {
+        // Start with a base query to get ideas ordered by creation date in descending order
+        $ideas = Idea::orderBy('created_at', 'DESC');
+
+        // Check if there is a search query parameter
+        if (request()->has('search')) {
+            // Filter ideas where the content is similar to the search query
+            $ideas = $ideas->where('content', 'like', '%'.request()->get('search', '').'%');
+        }
+
+        // Paginate the results and pass them to the view
+        return view('dashboard', [
+            'ideas' => $ideas->paginate(5)
         ]);
     }
-
 }
