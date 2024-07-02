@@ -47,10 +47,6 @@
 
     <!-- Main Content Area -->
     <div class="col-6">
-        {{-- @include('shared.success-message')
-            <h4>Share your ideas</h4>
-            @include('shared.submit-idea') --}}
-            
         <div class="mt-3">
             @include('shared.idea-card', ['idea' => $idea])
         </div>
